@@ -1,13 +1,19 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <router-link to="/" class="navbar-brand">bezKoder</router-link>
+      <router-link to="/" class="navbar-brand">Courses</router-link>
       <div class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link to="/tutorials" class="nav-link">Tutorials</router-link>
+          <router-link to="/courses" class="nav-link">Course Listing</router-link>
         </li>
         <li class="nav-item">
           <router-link to="/add" class="nav-link">Add</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/update" class="nav-link">Update</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/delete" class="nav-link">Delete</router-link>
         </li>
       </div>
     </nav>

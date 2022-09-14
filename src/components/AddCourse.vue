@@ -64,6 +64,7 @@
         </div>
         <button @click="saveCourse" class="btn btn-success">Submit</button>
       </div>
+      
       <div v-else>
         <h4>You submitted successfully!</h4>
         <button class="btn btn-success" @click="newCourse">Add</button>

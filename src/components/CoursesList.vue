@@ -21,7 +21,7 @@
             :key="index"
             @click="setActiveCourse(course, index)"
           >
-            {{ course.title }}
+            {{ course.CourseNumber }}
           </li>
         </ul>
         <button class="m-3 btn btn-sm btn-danger" @click="removeAllCourses">
@@ -42,9 +42,6 @@
           </div>
           <div>
             <label><strong>Hours:</strong></label> {{ currentCourse.Hours }}
-          </div>
-          <div>
-            <label><strong>Title:</strong></label> {{ currentCourse.title }}
           </div>
           <div>
             <label><strong>Name:</strong></label> {{ currentCourse.Name }}
@@ -68,6 +65,7 @@
       </div>
     </div>
   </template>
+  
   <script>
   import CourseDataService from "../services/CourseDataService";
   export default {

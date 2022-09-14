@@ -1,7 +1,7 @@
 import http from "../http-common";
 class CourseDataService {
   getAll() {
-    return http.get("/courses");
+    return http.get("/");
   }
   get(CourseNumber) {
     return http.get(`/courses/${CourseNumber}`);

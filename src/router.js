@@ -8,13 +8,13 @@ export default new Router({
       path: "/",
       alias: "/courses",
       name: "courses",
-      component: () => import("./components/CoursesList")
+      component: () => import("./components/Courses")
     },
-    {
-      path: "/courses/:CourseNumber",
-      name: "course-details",
-      component: () => import("./components/Course")
-    },
+    // {
+    //   path: "/courses/:CourseNumber",
+    //   name: "course-details",
+    //   component: () => import("./components/Course")
+    // },
     {
       path: "/add",
       name: "add",

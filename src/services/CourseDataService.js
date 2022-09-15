@@ -4,13 +4,13 @@ class CourseDataService {
     return http.get("/");
   }
   get(CourseNumber) {
-    return http.get(`/courses/${CourseNumber}`);
+    return http.get(`/${CourseNumber}`);
   }
   create(data) {
-    return http.post("/courses", data);
+    return http.post("/", data);
   }
   update(CourseNumber, data) {
-    return http.put(`/courses/${CourseNumber}`, data);
+    return http.put(`/${CourseNumber}`, data);
   }
   delete(CourseNumber) {
     return http.delete(`/courses/${CourseNumber}`);

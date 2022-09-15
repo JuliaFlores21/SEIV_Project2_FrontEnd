@@ -24,9 +24,9 @@
             {{ course.CourseNumber }}
           </li>
         </ul>
-        <button class="m-3 btn btn-sm btn-danger" @click="removeAllCourses">
+        <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllCourses">
           Remove All
-        </button>
+        </button> -->
       </div>
       <div class="col-md-6">
         <div v-if="currentCourse">
@@ -52,9 +52,7 @@
           <div>
             <label><strong>Status:</strong></label> {{ currentCourse.published ? "Published" : "Pending" }}
           </div>
-          <a class="badge badge-warning"
-            :href="'/courses/' + currentCourse.CourseNumber"
-          >
+          <a class="badge badge-warning" :href="'/courses/' + currentCourse.CourseNumber">
             Edit
           </a>
         </div>
@@ -98,26 +96,28 @@
         this.currentCourse = course;
         this.currentIndex = index;
       },
-      removeAllCourses() {
-        CourseDataService.deleteAll()
-          .then(response => {
-            console.log(response.data);
-            this.refreshList();
-          })
-          .catch(e => {
-            console.log(e);
-          });
-      },
+      // removeAllCourses() {
+      //   CourseDataService.deleteAll()
+      //     .then(response => {
+      //       console.log(response.data);
+      //       this.refreshList();
+      //     })
+      //     .catch(e => {
+      //       console.log(e);
+      //     });
+      // },
       
       searchCourseNumber() {
-        CourseDataService.findByCourseNumber(this.CourseNumber)
-          .then(response => {
-            this.courses = response.data;
-            console.log(response.data);
-          })
-          .catch(e => {
-            console.log(e);
-          });
+        let filteredCourses = this.courses.filter(course => course.CourseNumber == this.CourseNumber)
+        console.log(filteredCourses);
+        // CourseDataService.findByCourseNumber(this.CourseNumber)
+        //   .then(response => {
+        //     this.courses = response.data;
+        //     console.log(response.data);
+        //   })
+        //   .catch(e => {
+        //     console.log(e);
+        //   });
       }
     },
     mounted() {

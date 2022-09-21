@@ -63,6 +63,12 @@
           />
         </div>
         <button @click="saveCourse" class="btn btn-success">Submit</button>
+
+        <a class="badge badge-warning" :href="'/'">
+          <span style="padding-left:135px;">
+          <button class="btn btn-danger">Cancel</button>
+          </span>
+        </a>
       </div>
       
       <div v-else>

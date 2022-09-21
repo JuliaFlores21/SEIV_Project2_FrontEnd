@@ -1,4 +1,4 @@
-# course_frontend
+# vue-js-client-crud
 
 ## Project setup
 ```

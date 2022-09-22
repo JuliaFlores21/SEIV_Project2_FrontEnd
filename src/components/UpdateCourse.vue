@@ -1,67 +1,77 @@
 <template>
-    <div v-if="currentCourse" class="edit-form">
-      <h4>Course</h4>
-      <form>
-        <div class="form-group">
-          <label for="Dept">Dept</label>
-          <input type="text" class="form-control" id="Dept"
-            v-model="currentCourse.Dept"
-          />
-        </div>
-        <div class="form-group">
-          <label for="CourseNumber">CourseNumber</label>
-          <input type="text" class="form-control" id="CourseNumber"
-            v-model="currentCourse.CourseNumber"
-          />
-        </div>
-        <div class="form-group">
-          <label for="Level">Level</label>
-          <input type="text" class="form-control" id="Level"
-            v-model="currentCourse.Level"
-          />
-        </div>
-        <div class="form-group">
-          <label for="Hours">Hours</label>
-          <input type="text" class="form-control" id="Hours"
-            v-model="currentCourse.Hours"
-          />
-        </div>
-        <div class="form-group">
-          <label for="Name">Name</label>
-          <input type="text" class="form-control" id="Name"
-            v-model="currentCourse.Name"
-          />
-        </div>
-        <div class="form-group">
-          <label for="Description">Description</label>
-          <input type="text" class="form-control" id="Description"
-            v-model="currentCourse.Description"
-          />
-        </div>
+    <div v-if="!submitted" class="col-md4 offset-md-4">
+        <div v-if="currentCourse" class="edit-form">
+        <h4>Course</h4>
+        <form>
+            <div class="form-group">
+            <label for="Dept">Dept</label>
+            <input type="text" class="form-control" id="Dept"
+                v-model="currentCourse.Dept"
+            />
+            </div>
+            <div class="form-group">
+            <label for="CourseNumber">CourseNumber</label>
+            <input type="text" class="form-control" id="CourseNumber"
+                v-model="currentCourse.CourseNumber"
+            />
+            </div>
+            <div class="form-group">
+            <label for="Level">Level</label>
+            <input type="text" class="form-control" id="Level"
+                v-model="currentCourse.Level"
+            />
+            </div>
+            <div class="form-group">
+            <label for="Hours">Hours</label>
+            <input type="text" class="form-control" id="Hours"
+                v-model="currentCourse.Hours"
+            />
+            </div>
+            <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text" class="form-control" id="Name"
+                v-model="currentCourse.Name"
+            />
+            </div>
+            <div class="form-group">
+            <label for="Description">Description</label>
+            <input type="text" class="form-control" id="Description"
+                v-model="currentCourse.Description"
+            />
+            </div>
 
-        <!-- <div class="form-group">
-          <label><strong>Status:</strong></label>
-          {{ currentCourse.published ? "Published" : "Pending" }}
-        </div> -->
-      </form>
+            <!-- <div class="form-group">
+            <label><strong>Status:</strong></label>
+            {{ currentCourse.published ? "Published" : "Pending" }}
+            </div> -->
+        </form>
 
-      <button @click="updateCourse" class="btn btn-success">Update</button>
+        <button @click="updateCourse" class="btn btn-success">Update</button>
 
-        <a class="badge badge-warning" :href="'/'">
-          <span style="padding-left:130px;">
-          <button class="btn btn-danger">Cancel</button>
-          </span>
-        </a>
+            <a class="badge badge-warning" :href="'/'">
+            <span style="padding-left:130px;">
+            <button class="btn btn-danger">Cancel</button>
+            </span>
+            </a>
 
-    </div> 
-   <div v-else>
-        <h4>No course found or selected</h4>
-        <a class="badge badge-warning" :href="'/'">
-          <span style="padding-left:135px;">
-          <button class="btn btn-danger">Return</button>
-          </span>
-        </a>
-    </div>    
+        </div> 
+        <div v-else>
+            <h4>No course found or selected</h4>
+            <a class="badge badge-warning" :href="'/'">
+            <span style="padding-left:135px;">
+            <button class="btn btn-danger">Return</button>
+            </span>
+            </a>
+        </div>   
+    </div>
+    <div v-else>
+        <h4>Course successfully updated click to return to list.</h4>
+          <a class="badge badge-warning" :href="'/'">
+            <span style="padding-left:20px;">
+              <button class="btn btn-danger">Return</button>
+            </span>
+          </a>
+  </div>
 </template>
 
 <script>
@@ -73,7 +83,7 @@
         return {
           currentCourse: null,
           message: '',
-          //submitted: false
+          submitted: false
 
         };
       },
@@ -121,6 +131,7 @@
             .then(response => {
               console.log(response.data);
               this.message = 'The Course was updated successfully!';
+              this.submitted = true;
             })
             .catch(e => {
               console.log(e);

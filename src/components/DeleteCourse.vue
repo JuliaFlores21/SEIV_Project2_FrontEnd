@@ -1,4 +1,5 @@
 <template>
+  <div v-if="!deleted" class="col-md4 offset-md-4">
     <div v-if="currentCourse" class="col-md4 offset-md-4">
           <h4>Course Info</h4>
           <div>
@@ -23,22 +24,26 @@
           <!-- <div>
             <label><strong>Status:</strong></label> {{ currentCourse.published ? "Published" : "Pending" }}
           </div> -->
+         
           <button @click="deleteCourse" class="btn btn-success">Delete</button>
 
-        
-          <a class="badge badge-warning" :href="'/' + currentCourse.CourseNumber">
+          <a class="badge badge-warning" :href="'/'">
           <span style="padding-left:20px;">
           <button class="btn btn-danger">Cancel</button>
           </span>
           </a>
-        </div>
+    </div>
+  </div>
+  <div v-else>
+        <h4>Course successfully deleted click to return to list.</h4>
+          <a class="badge badge-warning" :href="'/'">
+            <span style="padding-left:20px;">
+              <button class="btn btn-danger">Return</button>
+            </span>
+          </a>
+  </div>
+  
 </template>
-
-
-
-
-
-
 
 <script>
     import CourseDataService from "../services/CourseDataService";
@@ -49,7 +54,7 @@
         return {
           currentCourse: null,
           message: '',
-          //submitted: false
+          deleted: false
 
         };
       },
@@ -88,6 +93,7 @@
           .then(response => {
             console.log(response.data);
             //this.$router.push({ name: "courses-home" });
+            this.deleted = true;
           })
           .catch(e => {
             console.log(e);

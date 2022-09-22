@@ -22,8 +22,20 @@
       <div class="col-md-6">
         <h4>Courses List</h4>
         <ul class="list-group">
+
+          <!-- <div v-if="!searched"> 
+          <li class="list-group-item" :class="{ active: index == currentIndex }" v-for="(course, index) in courses" :key="index" @click="setActiveCourse(course, index)">
+            
+            {{  course.Name}}
+            <span style="float:right;">
+              {{ course.CourseNumber}}
+            </span>
+            
+          </li>
+          </div>
+           -->
           <li class="list-group-item" :class="{ active: index == currentIndex }" 
-          v-for="(course, index) in courses" :key="index" @click="setActiveCourse(course, index)">
+          v-for="(course, index) in displayCourses" :key="index" @click="setActiveCourse(course, index)">
 
             {{ course.Name}}
             <span style="float:right;">
@@ -31,6 +43,7 @@
             </span>
             
           </li>
+
         </ul>
         <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllCourses">
           Remove All
@@ -87,10 +100,12 @@
     data() {
       return {
         courses: [],
+        displayCourses: [],
         currentCourse: null,
         currentIndex: -1,
         CourseNumber: "",
-        searched: false
+        searched: false,
+        courseNumberSearched: []
       };
     },
     methods: {
@@ -98,6 +113,7 @@
         CourseDataService.getAll()
           .then(response => {
             this.courses = response.data;
+            this.displayCourses = this.courses;
             console.log(response.data);
           })
           .catch(e => {
@@ -126,10 +142,15 @@
       
       searchCourseNumber() {
         let filteredCourses = this.courses.filter(course => course.CourseNumber == this.CourseNumber)
+        if(filteredCourses[0] == null){
+          this.displayCourses = this.courses;
+        }
+        else{
         console.log(filteredCourses);
         console.log(filteredCourses[0].CourseNumber);
+        this.displayCourses = filteredCourses;
         this.searched = true;
-        return filteredCourses;
+        }
 
         // CourseDataService.findByCourseNumber(this.CourseNumber)
         //   .then(response => {

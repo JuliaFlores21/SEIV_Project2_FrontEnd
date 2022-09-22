@@ -73,7 +73,13 @@
       
       <div v-else>
         <h4>You submitted successfully!</h4>
+        <h4>Add another course or return to list</h4>
         <button class="btn btn-success" @click="newCourse">Add</button>
+        <a class="badge badge-warning" :href="'/'">
+            <span style="padding-left:100px;">
+              <button class="btn btn-danger">Return</button>
+            </span>
+        </a>
       </div>
     </div>
   </template>

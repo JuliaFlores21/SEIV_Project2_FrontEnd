@@ -5,24 +5,45 @@
           <input type="text" class="form-control" placeholder="Search by Course Number"
             v-model="CourseNumber"/>
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button"
-              @click="searchCourseNumber" >
-              Search
-            </button>
+            
+            <span style="padding-left:20px;">
+            <button class="btn btn-secondary btn-lg" type="button"
+              @click="searchCourseNumber" > Search </button>
+            </span>
+
+            <span style="padding-left:50px;">
+            <a class="badge badge-warning" :href="'/add'">
+              <button class="btn btn-primary btn-lg"> Add </button>
+            </a>
+            </span>
           </div>
         </div>
       </div>
       <div class="col-md-6">
         <h4>Courses List</h4>
         <ul class="list-group">
-          <li class="list-group-item"
-            :class="{ active: index == currentIndex }"
-            v-for="(course, index) in courses"
-            :key="index"
-            @click="setActiveCourse(course, index)"
-          >
-            {{ course.CourseNumber }}
+
+          <!-- <div v-if="!searched"> 
+          <li class="list-group-item" :class="{ active: index == currentIndex }" v-for="(course, index) in courses" :key="index" @click="setActiveCourse(course, index)">
+            
+            {{  course.Name}}
+            <span style="float:right;">
+              {{ course.CourseNumber}}
+            </span>
+            
           </li>
+          </div>
+           -->
+          <li class="list-group-item" :class="{ active: index == currentIndex }" 
+          v-for="(course, index) in displayCourses" :key="index" @click="setActiveCourse(course, index)">
+
+            {{ course.Name}}
+            <span style="float:right;">
+              {{ course.CourseNumber}}
+            </span>
+            
+          </li>
+
         </ul>
         <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllCourses">
           Remove All
@@ -30,7 +51,7 @@
       </div>
       <div class="col-md-6">
         <div v-if="currentCourse">
-          <h4>Course</h4>
+          <h4>Course Info</h4>
           <div>
             <label><strong>Dept:</strong></label> {{ currentCourse.Dept }}
           </div>
@@ -47,13 +68,21 @@
             <label><strong>Name:</strong></label> {{ currentCourse.Name }}
           </div>
           <div>
-            <label><strong>Description:</strong></label> {{ currentCourse.Description }}
+            <label><strong>Description:</strong></label> 
+            {{ currentCourse.Description }}
           </div>
-          <div>
+          
+          <!-- <div>
             <label><strong>Status:</strong></label> {{ currentCourse.published ? "Published" : "Pending" }}
-          </div>
-          <a class="badge badge-warning" :href="'/courses/' + currentCourse.CourseNumber">
-            Edit
+          </div> -->
+          <a class="badge badge-warning" :href="'/update/' + currentCourse.CourseNumber"> 
+            <button class="btn btn-success" >Update</button>
+          </a>
+        
+          <a class="badge badge-warning" :href="'/delete/' + currentCourse.CourseNumber">
+          <span style="padding-left:20px;">
+          <button class="btn btn-danger">Delete</button>
+          </span>
           </a>
         </div>
         <div v-else>
@@ -71,9 +100,12 @@
     data() {
       return {
         courses: [],
+        displayCourses: [],
         currentCourse: null,
         currentIndex: -1,
-        CourseNumber: ""
+        CourseNumber: "",
+        searched: false,
+        courseNumberSearched: []
       };
     },
     methods: {
@@ -81,6 +113,7 @@
         CourseDataService.getAll()
           .then(response => {
             this.courses = response.data;
+            this.displayCourses = this.courses;
             console.log(response.data);
           })
           .catch(e => {
@@ -109,7 +142,16 @@
       
       searchCourseNumber() {
         let filteredCourses = this.courses.filter(course => course.CourseNumber == this.CourseNumber)
+        if(filteredCourses[0] == null){
+          this.displayCourses = this.courses;
+        }
+        else{
         console.log(filteredCourses);
+        console.log(filteredCourses[0].CourseNumber);
+        this.displayCourses = filteredCourses;
+        this.searched = true;
+        }
+
         // CourseDataService.findByCourseNumber(this.CourseNumber)
         //   .then(response => {
         //     this.courses = response.data;
@@ -128,7 +170,8 @@
   <style>
   .list {
     text-align: left;
-    max-width: 750px;
+    max-width: 3000px;
     margin: auto;
+    line-height: 2;
   }
   </style>

@@ -6,12 +6,6 @@
         <li class="nav-item">
           <router-link to="/add" class="nav-link">Add</router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/update" class="nav-link">Update</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/delete" class="nav-link">Delete</router-link>
-        </li>
       </div>
     </nav>
     <div class="container mt-3">

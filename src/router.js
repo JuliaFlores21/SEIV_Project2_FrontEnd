@@ -21,13 +21,15 @@ export default new Router({
       component: () => import("./components/AddCourse")
     },
     {
-      path: "/update",
+      path: "/update/:CourseNumber",  // changed to id
       name: "update",
+      props: true,
       component: () => import("./components/UpdateCourse")
     },
     {
-      path: "/delete",
+      path: "/delete/:CourseNumber",
       name: "delete",
+      props: true,
       component: () => import("./components/DeleteCourse")
     }
   ]

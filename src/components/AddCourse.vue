@@ -109,7 +109,7 @@
           Level: this.course.Level,
           Hours: this.course.Hours,
           Name: this.course.Name,
-          description: this.course.description,
+          Description: this.course.Description,
         };
         CourseDataService.create(data)
           .then(response => {

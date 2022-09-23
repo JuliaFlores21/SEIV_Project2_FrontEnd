@@ -27,20 +27,31 @@
          
           <button @click="deleteCourse" class="btn btn-success">Delete</button>
 
-          <a class="badge badge-warning" :href="'/'">
+          <!-- <a class="badge badge-warning" :href="'/'">
           <span style="padding-left:20px;">
           <button class="btn btn-danger">Cancel</button>
           </span>
-          </a>
+          </a> -->
+          <span style ="padding-left:20px;">
+          <router-link class="badge badge-warning" to="/">
+            <button class="btn btn-danger" >Cancel</button>
+          </router-link>
+          </span>
+
     </div>
   </div>
   <div v-else>
         <h4>Course successfully deleted click to return to list.</h4>
-          <a class="badge badge-warning" :href="'/'">
+          <!-- <a class="badge badge-warning" :href="'/'">
             <span style="padding-left:20px;">
               <button class="btn btn-danger">Return</button>
             </span>
-          </a>
+          </a> -->
+          <span style ="padding-left:20px;">
+          <router-link class="badge badge-warning" to="/">
+            <button class="btn btn-danger" >Return</button>
+          </router-link>
+          </span>
   </div>
   
 </template>

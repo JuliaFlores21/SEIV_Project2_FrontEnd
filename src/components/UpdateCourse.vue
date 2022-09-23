@@ -48,29 +48,45 @@
 
         <button @click="updateCourse" class="btn btn-success">Update</button>
 
-            <a class="badge badge-warning" :href="'/'">
+            <!-- <a class="badge badge-warning" :href="'/'">
             <span style="padding-left:130px;">
             <button class="btn btn-danger">Cancel</button>
             </span>
-            </a>
+            </a> -->
+          <span style ="padding-left:130px;">
+          <router-link class="badge badge-warning" to="/">
+            <button class="btn btn-danger" >Cancel</button>
+          </router-link>
+          </span>
 
         </div> 
         <div v-else>
             <h4>No course found or selected</h4>
-            <a class="badge badge-warning" :href="'/'">
+            <!-- <a class="badge badge-warning" :href="'/'">
             <span style="padding-left:135px;">
             <button class="btn btn-danger">Return</button>
             </span>
-            </a>
+            </a> -->
+          <span style ="padding-left:135px;">
+          <router-link class="badge badge-warning" to="/">
+            <button class="btn btn-danger" >Return</button>
+          </router-link>
+          </span>
+
         </div>   
     </div>
     <div v-else>
         <h4>Course successfully updated click to return to list.</h4>
-          <a class="badge badge-warning" :href="'/'">
+          <!-- <a class="badge badge-warning" :href="'/'">
             <span style="padding-left:20px;">
               <button class="btn btn-danger">Return</button>
             </span>
-          </a>
+          </a> -->
+          <span style ="padding-left:20px;">
+          <router-link class="badge badge-warning" to="/">
+            <button class="btn btn-danger" >Return</button>
+          </router-link>
+          </span>
   </div>
 </template>
 

@@ -11,10 +11,16 @@
               @click="searchCourseNumber" > Search </button>
             </span>
 
+            <!-- <a class="badge badge-warning" :href="'/add/'">
+            <span style="padding-left:20px;">
+            <button class="btn btn-primary btn-lg">Add</button>
+            </span>
+            </a> -->
+
             <span style="padding-left:50px;">
-            <a class="badge badge-warning" :href="'/add'">
+            <router-link to="/add" class="badge badge-warning">
               <button class="btn btn-primary btn-lg"> Add </button>
-            </a>
+            </router-link>
             </span>
           </div>
         </div>
@@ -75,15 +81,27 @@
           <!-- <div>
             <label><strong>Status:</strong></label> {{ currentCourse.published ? "Published" : "Pending" }}
           </div> -->
-          <a class="badge badge-warning" :href="'/update/' + currentCourse.CourseNumber"> 
+          
+            <!-- <a class="badge badge-warning" :href="'/update/' + currentCourse.CourseNumber">
+            <span style="padding-left:20px;">
+            <button class="btn btn-success">Update</button>
+            </span>
+            </a> -->
+          <router-link class="badge badge-warning" :to="'/update/'+ currentCourse.CourseNumber">
             <button class="btn btn-success" >Update</button>
-          </a>
-        
-          <a class="badge badge-warning" :href="'/delete/' + currentCourse.CourseNumber">
+          </router-link>
+
+
+          <!-- <a class="badge badge-warning" :href="'/delete/' + currentCourse.CourseNumber">
           <span style="padding-left:20px;">
           <button class="btn btn-danger">Delete</button>
           </span>
-          </a>
+          </a> -->
+          <router-link class="badge badge-warning" :to="'/delete/'+ currentCourse.CourseNumber">
+            <button class="btn btn-danger" >Delete</button>
+          </router-link>
+
+
         </div>
         <div v-else>
           <br />
